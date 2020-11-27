@@ -1,5 +1,8 @@
 package com.grasswort.giggle.webflux.configuration.security;
 
+import com.grasswort.giggle.webflux.model.User;
+import com.grasswort.giggle.webflux.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -20,9 +23,11 @@ import java.util.Arrays;
 @EnableWebFluxSecurity
 public class UserDetailServiceImpl implements ReactiveUserDetailsService {
 
-    private final String password = "giggle";
-
     private final static PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    @Autowired
+    private IUserService userService;
+
 
     /**
      * Find the {@link UserDetails} by username.
@@ -32,15 +37,19 @@ public class UserDetailServiceImpl implements ReactiveUserDetailsService {
      */
     @Override
     public Mono<UserDetails> findByUsername(String username) {
-        return Mono.just(GiggleUser.giggleUserBuilder()
-                .setUsername(username)
-                .setPassword(passwordEncoder.encode(password))
-                .setEnabled(true)
-                .setCredentialsNonExpired(true)
-                .setAccountNonLocked(true)
-                .setAccountNonExpired(true)
-                .setAuthorities(Arrays.asList())
-                .build());
+        User user = userService.selectByUsername(username);
+        if (user != null) {
+            return Mono.just(GiggleUser.giggleUserBuilder()
+                    .setUsername(user.getUsername())
+                    .setPassword(user.getPassword())
+                    .setEnabled(true)
+                    .setCredentialsNonExpired(true)
+                    .setAccountNonLocked(true)
+                    .setAccountNonExpired(true)
+                    .setAuthorities(Arrays.asList())
+                    .build());
+        }
+        return Mono.empty();
     }
 
     @Bean
