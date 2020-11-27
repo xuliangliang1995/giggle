@@ -62,3 +62,19 @@ Both Spring MVC and Spring WebFlux support annotated controllers
 1. Spring MVC : It is assumed that applications can block the current thread, (for example, for remote calls). 
  => a large Thread-pool
 2. Spring WebFlux : It is assumed that applications do not block. => a small Thread-pool
+
+
+# For Server Request
+HttpHandler
+WebHandler
+# For Client side
+ClientHttpConnector => WebClient
+# For Server & Client
+codecs
+
+```java
+public interface HttpHandler {
+    Mono<Void> handle(ServerHttpRequest var1, ServerHttpResponse var2);
+}
+```
+
