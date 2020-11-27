@@ -2,6 +2,7 @@ package com.grasswort.giggle.webflux.configuration.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -16,6 +17,7 @@ import java.util.Arrays;
  * @Date 2020/11/27
  */
 @Configuration
+@EnableWebFluxSecurity
 public class UserDetailServiceImpl implements ReactiveUserDetailsService {
 
     private final String password = "giggle";
