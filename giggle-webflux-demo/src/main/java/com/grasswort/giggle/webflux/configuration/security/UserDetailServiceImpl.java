@@ -2,14 +2,9 @@ package com.grasswort.giggle.webflux.configuration.security;
 
 import com.grasswort.giggle.webflux.model.User;
 import com.grasswort.giggle.webflux.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -19,15 +14,14 @@ import java.util.Arrays;
  * @Description
  * @Date 2020/11/27
  */
-@Configuration
-@EnableWebFluxSecurity
+@Component
 public class UserDetailServiceImpl implements ReactiveUserDetailsService {
 
-    private final static PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    private final IUserService userService;
 
-    @Autowired
-    private IUserService userService;
-
+    public UserDetailServiceImpl(IUserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Find the {@link UserDetails} by username.
@@ -52,9 +46,6 @@ public class UserDetailServiceImpl implements ReactiveUserDetailsService {
         return Mono.empty();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return passwordEncoder;
-    }
+
 
 }
