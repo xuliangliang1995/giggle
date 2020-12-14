@@ -22,7 +22,11 @@ public class OrderController {
 
     @GetMapping
     public String orderPaySuccess() {
-        orderService.orderPaySuccess();
-        return "SUCCESS";
+        try {
+            orderService.orderPaySuccess();
+            return "SUCCESS";
+        } catch (Exception e) {
+            return "FAIL";
+        }
     }
 }

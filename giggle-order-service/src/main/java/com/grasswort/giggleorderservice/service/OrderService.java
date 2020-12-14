@@ -20,7 +20,7 @@ public class OrderService {
     }
 
 
-    // @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public void orderPaySuccess() {
         OrderResult order = new OrderResult();
         order.setResult("PAY_SUCCESS");
