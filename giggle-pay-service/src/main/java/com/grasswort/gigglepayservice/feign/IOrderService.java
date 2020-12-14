@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Date 2020/12/8
  * @Description
  */
-@FeignClient(name = "giggle-order-service")
+@FeignClient(name = "GIGGLE-ORDER-SERVICE")
 public interface IOrderService {
 
     @GetMapping("order")

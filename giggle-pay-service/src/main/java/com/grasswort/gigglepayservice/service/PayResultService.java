@@ -3,8 +3,8 @@ package com.grasswort.gigglepayservice.service;
 import com.grasswort.gigglepayservice.dao.PayResultDao;
 import com.grasswort.gigglepayservice.feign.IOrderService;
 import com.grasswort.gigglepayservice.model.PayResult;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author xuliang
@@ -23,11 +23,14 @@ public class PayResultService {
         this.orderService = orderService;
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @GlobalTransactional(rollbackFor = Exception.class)
     public void payCallBack() {
         PayResult payResult = new PayResult();
         payResult.setResult("PAY_SUCCESS");
         payResultDao.insert(payResult);
-        orderService.orderPaySuccess();
+        String result = orderService.orderPaySuccess();
+        System.out.println(result);
+        // manufacturing error to rollback
+        // int i = 1 / 0;
     }
 }

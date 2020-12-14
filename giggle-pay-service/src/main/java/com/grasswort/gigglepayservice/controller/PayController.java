@@ -22,7 +22,11 @@ public class PayController {
 
     @GetMapping
     public String payCallBack() {
-        payResultService.payCallBack();
-        return "SUCCESS";
+        try {
+            payResultService.payCallBack();
+            return "SUCCESS";
+        } catch (Exception e) {
+            return "FAIL";
+        }
     }
 }
