@@ -1,3 +1,4 @@
+/*
 package com.grasswort.giggle.webflux.configuration.security;
 
 import org.springframework.context.annotation.Bean;
@@ -6,13 +7,15 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+*/
 /**
  * @author xuliangliang
  * @Description
  * @Date 2020/11/30
- */
-@Configuration
-@EnableWebFluxSecurity
+ *//*
+
+//@Configuration
+//@EnableWebFluxSecurity
 public class SecurityConfiguration {
 
     @Bean
@@ -20,3 +23,4 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
+*/

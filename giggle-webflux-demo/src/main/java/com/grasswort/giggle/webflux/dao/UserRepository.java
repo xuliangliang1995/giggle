@@ -1,7 +1,6 @@
 package com.grasswort.giggle.webflux.dao;
 
 import com.grasswort.giggle.webflux.model.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -19,11 +18,11 @@ public class UserRepository {
 
     private final static List<User> users = new LinkedList<>();
 
-    private final PasswordEncoder passwordEncoder;
+   /* private final PasswordEncoder passwordEncoder;
 
     public UserRepository(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-    }
+    }*/
 
     /**
      * 根据用户名查询用户
@@ -36,10 +35,10 @@ public class UserRepository {
                 .findFirst().orElse(null);
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void initUserPool() {
         users.add(new User(1L,"jerry", passwordEncoder.encode("giggle")));
         users.add(new User(2L,"tom", passwordEncoder.encode("giggle")));
-    }
+    }*/
 
 }

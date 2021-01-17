@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grasswort.grasswortshardjdbc.mapper.BookDao">
+  <resultMap id="BaseResultMap" type="com.grasswort.grasswortshardjdbc.domain.Book">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="lib_id" jdbcType="BIGINT" property="libId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, lib_id, `name`, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="listBooksOfLibrary" resultMap="BaseResultMap">
+    select * from book where lib_id = #{libraryId}
+  </select>
+  <select id="listBookDTOsOfLibrary" resultType="com.grasswort.grasswortshardjdbc.dto.BookDTO">
+    select b.*, l.name as library from book b
+    left join library l on l.id = b.lib_id
+    where b.lib_id = #{libraryId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from book
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.grasswort.grasswortshardjdbc.domain.Book" useGeneratedKeys="true">
+    insert into book (lib_id, `name`, gmt_create, 
+      gmt_modified)
+    values (#{libId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.grasswort.grasswortshardjdbc.domain.Book" useGeneratedKeys="true">
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="libId != null">
+        lib_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="libId != null">
+        #{libId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.grasswort.grasswortshardjdbc.domain.Book">
+    update book
+    <set>
+      <if test="libId != null">
+        lib_id = #{libId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.grasswort.grasswortshardjdbc.domain.Book">
+    update book
+    set lib_id = #{libId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+    and lib_id = #{libId,jdbcType=BIGINT}
+  </update>
+</mapper>

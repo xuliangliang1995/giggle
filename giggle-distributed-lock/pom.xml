@@ -5,15 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.grasswort</groupId>
-  <artifactId>giggle</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>giggle-distributed-lock</module>
-    </modules>
+  <artifactId>giggle-distributed-lock</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
-    <!-- 咯咯笑 -->
-  <name>giggle</name>
+  <name>giggle-distributed-lock</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,10 +20,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webflux</artifactId>
-      <version>2.3.5.RELEASE</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
+  <build>
+  </build>
 </project>

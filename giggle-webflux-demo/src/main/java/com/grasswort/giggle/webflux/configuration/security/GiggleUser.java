@@ -1,3 +1,4 @@
+/*
 package com.grasswort.giggle.webflux.configuration.security;
 
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -6,13 +7,16 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
+*/
 /**
  * @author xuliangliang
  * @Description
  * @Date 2020/11/27
- */
+ *//*
+
 public class GiggleUser extends User {
-    /**
+    */
+/**
      * Construct the <code>User</code> with the details required by
      * {@link DaoAuthenticationProvider}.
      *
@@ -29,7 +33,8 @@ public class GiggleUser extends User {
      *                              presented the correct username and password and the user is enabled. Not null.
      * @throws IllegalArgumentException if a <code>null</code> value was passed either as
      *                                  a parameter or as an element in the <code>GrantedAuthority</code> collection
-     */
+     *//*
+
     public GiggleUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
@@ -41,3 +46,4 @@ public class GiggleUser extends User {
 
 
 }
+*/

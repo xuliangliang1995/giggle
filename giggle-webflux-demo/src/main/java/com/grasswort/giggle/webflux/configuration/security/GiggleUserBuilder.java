@@ -1,14 +1,17 @@
+/*
 package com.grasswort.giggle.webflux.configuration.security;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+*/
 /**
  * @author xuliangliang
  * @Description
  * @Date 2020/11/27
- */
+ *//*
+
 public class GiggleUserBuilder {
     private String username;
     private String password;
@@ -57,3 +60,4 @@ public class GiggleUserBuilder {
         return this;
     }
 }
+*/
